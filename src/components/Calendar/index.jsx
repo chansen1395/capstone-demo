@@ -8,9 +8,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import CalendarBody from './calendar-body';
 import CalendarHead from './calendar-head';
 
-import AddActivity from '../AddActivity';
-import EditActivity from '../EditActivity';
-import ActivityList from '../ActivityList';
+import AddReservation from '../AddReservation';
+import EditReservation from '../EditReservation';
+import ReservationList from '../ReservationList';
 
 function Calendar(props) {
 
@@ -63,7 +63,7 @@ function Calendar(props) {
     const [snackbarMsg, setSnackbarMsg] = useState(null);
 
     /*** ACTIVITY LIST ***/
-    const [activities, setActivities] = useState(true);
+    const [reservations, setReservations] = useState(true);
     const [loading, setLoading] = useState([]);
     const [activeDays, setActiveDays] = useState([]);
 
@@ -71,10 +71,10 @@ function Calendar(props) {
         
         let queryDate = `${selectedDay.day}-${selectedDay.month}-${selectedDay.year}`;
 
-        let ref = firebase.db.ref().child(`users/${authUser.uid}/activities`);
+        let ref = firebase.db.ref().child(`users/${authUser.uid}/reservations`);
         ref.orderByChild("date").equalTo(queryDate).on("value", snapshot => {
             let data = snapshot.val();
-            setActivities(data);
+            setReservations(data);
             setLoading(false);
             // setEditing(false); Add later
         });
@@ -84,7 +84,7 @@ function Calendar(props) {
     };
 
     const retrieveActiveDays = () => {
-        let ref = firebase.db.ref().child(`users/${authUser.uid}/activities`);
+        let ref = firebase.db.ref().child(`users/${authUser.uid}/reservations`);
         ref.on("value", snapshot => {
             let data = snapshot.val();
             const values = Object.values(data);
@@ -103,13 +103,13 @@ function Calendar(props) {
 
     /*** EDIT AN ACTIVITY ***/
     const [editing, setEditing] = useState(false);
-    const [activity, setActivity] = useState(null);
-    const [activityKey, setActivityKey] = useState(null);
+    const [reservation, setReservation] = useState(null);
+    const [reservationKey, setReservationKey] = useState(null);
 
-    const editActivity = (activity, i) => {
-        setActivityKey(Object.keys(activities)[i]);
+    const editReservation = (reservation, i) => {
+        setReservationKey(Object.keys(reservations)[i]);
         setEditing(true);
-        setActivity(activity);
+        setReservation(reservation);
     }
 
     return (
@@ -141,10 +141,10 @@ function Calendar(props) {
                     { editing
                         ?
                             <>
-                                <h3>Edit activity on {selectedDay.day}-{selectedDay.month + 1} </h3>
-                                <EditActivity 
-                                    activity={activity}
-                                    activityKey={activityKey}
+                                <h3>Edit reservation on {selectedDay.day}-{selectedDay.month + 1} </h3>
+                                <EditReservation 
+                                    reservation={reservation}
+                                    reservationKey={reservationKey}
                                     selectedDay={selectedDay} 
                                     authUser={props.authUser}
                                     setEditing={setEditing}
@@ -154,8 +154,8 @@ function Calendar(props) {
                             </>
                         :
                             <>
-                                <h3>Add activity on {selectedDay.day}-{selectedDay.month + 1} </h3>
-                                <AddActivity 
+                                <h3>Add reservation on {selectedDay.day}-{selectedDay.month + 1} </h3>
+                                <AddReservation 
                                     selectedDay={selectedDay} 
                                     authUser={props.authUser}
                                     setOpenSnackbar={setOpenSnackbar}
@@ -167,14 +167,14 @@ function Calendar(props) {
             </Grid>
             <Grid item xs={12} md={7}>
                 <Paper className="paper">
-                <h3>Activities on {selectedDay.day}-{selectedDay.month + 1}</h3>
-                <ActivityList
+                <h3>Reservations on {selectedDay.day}-{selectedDay.month + 1}</h3>
+                <ReservationList
                     loading={loading}
-                    activities={activities}
+                    reservations={reservations}
                     authUser={props.authUser}
                     setOpenSnackbar={setOpenSnackbar}
                     setSnackbarMsg={setSnackbarMsg}
-                    editActivity={editActivity}
+                    editReservation={editReservation}
                     setEditing={setEditing}
                 />
                 </Paper>

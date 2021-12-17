@@ -36,14 +36,14 @@ const firebaseConfig = {
     user = uid => this.db.ref(`users/${uid}`);
     users = () => this.db.ref('users');
 
-    addActivity = (uid, activity) => {
-        const ref = this.db.ref().child(`users/${uid}/activities`);
-        ref.push(activity);
+    addReservation = (uid, reservation) => {
+        const ref = this.db.ref().child(`users/${uid}/reservations`);
+        ref.push(reservation);
     };
 
-    updateActivity = (uid, activity, activityKey) => {
-        const ref = this.db.ref().child(`users/${uid}/activities/${activityKey}`);
-        ref.update(activity);
+    updateReservation = (uid, reservation, reservationKey) => {
+        const ref = this.db.ref().child(`users/${uid}/reservations/${reservationKey}`);
+        ref.update(reservation);
     }
 }
 

@@ -36,7 +36,7 @@ function SignUp(props) {
         .set({
           username: user.name,
           email: user.email,
-          activities: 'not set'
+          reservations: 'not set'
         });
     })
     .then(authUser => {
