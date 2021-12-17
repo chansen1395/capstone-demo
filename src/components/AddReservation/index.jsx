@@ -99,12 +99,13 @@ function AddReservation(props) {
                     margin="normal"
                     required
                     fullWidth
-                    label="Reservation groupName"
+                    label="Reservation Group Name"
                     value={reservation.groupName}
                     groupName="groupName"
                     onChange={handleChange}
                 />
-                <TimePicker
+                {/* <TimePicker */}
+                <TextField
                     style={{marginTop: '5px'}}
                     variant="outlined"
                     margin="normal"
