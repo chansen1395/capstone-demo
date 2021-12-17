@@ -132,7 +132,7 @@ function EditReservation(props) {
                     groupName="groupName"
                     onChange={handleChange}
                 />
-                <TimePicker
+                <TextField
                     style={{marginTop: '5px'}}
                     variant="outlined"
                     margin="normal"

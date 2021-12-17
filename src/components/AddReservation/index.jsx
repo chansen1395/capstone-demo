@@ -89,7 +89,7 @@ function AddReservation(props) {
                     fullWidth
                     label="Reservation organizer"
                     value={reservation.organizer}
-                    organizer="organizer"
+                    name="organizer"
                     onChange={handleChange}
                 />
 
@@ -101,7 +101,7 @@ function AddReservation(props) {
                     fullWidth
                     label="Reservation Group Name"
                     value={reservation.groupName}
-                    groupName="groupName"
+                    name="groupName"
                     onChange={handleChange}
                 />
                 {/* <TimePicker */}
@@ -113,7 +113,7 @@ function AddReservation(props) {
                     fullWidth
                     label="Reservation Visit Time"
                     value={reservation.visitTime}
-                    visitTime="visitTime"
+                    name="visitTime"
                     onChange={handleChange}
                 />
                 <TextField
@@ -125,7 +125,7 @@ function AddReservation(props) {
                     fullWidth
                     label="Reservation Group Size"
                     value={reservation.groupSize}
-                    groupSize="groupSize"
+                    name="groupSize"
                     onChange={handleChange}
                 />
                 <TextField
@@ -136,7 +136,7 @@ function AddReservation(props) {
                     fullWidth
                     label="Activities"
                     value={reservation.activities}
-                    activities="activities"
+                    name="activities"
                     onChange={handleChange}
                 />
                 <TextField
@@ -147,7 +147,7 @@ function AddReservation(props) {
                     fullWidth
                     label="Misc. Notes"
                     value={reservation.notes}
-                    notes="notes"
+                    name="notes"
                     onChange={handleChange}
                 />
                 <TextField
@@ -159,7 +159,7 @@ function AddReservation(props) {
                     fullWidth
                     label="Contact E-mail"
                     value={reservation.email}
-                    email="email"
+                    name="email"
                     onChange={handleChange}
                 />
                 <div style={{marginTop: '20px', marginBottom: '30px'}}>
