@@ -12,6 +12,7 @@ import theme from './config/theme.config';
 import Dashboard from './pages/Dashboard';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import { ContactUs } from './pages/ContactForm';
 
 function App() {
   return (
@@ -21,8 +22,14 @@ function App() {
           <Route exact path="/">
             <SignIn />
           </Route>
+          <Route path="/contact">
+            <ContactUs />
+          </Route>
           <Route path="/sign-up">
             <SignUp />
+          </Route>
+          <Route path="/sign-in">
+            <SignIn />
           </Route>
           <Route path="/dashboard">
             <Dashboard />
