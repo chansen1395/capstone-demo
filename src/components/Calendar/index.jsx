@@ -97,7 +97,7 @@ function Calendar(props) {
             console.log(arr);
             setActiveDays(arr);
         });
-    }
+    } 
 
     useEffect(() => retrieveData(), [selectedDay]);
 
