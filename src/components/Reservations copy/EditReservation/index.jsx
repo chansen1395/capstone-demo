@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../../Firebase';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import { TimePicker } from '@mui/lab';
-import moment from 'moment';
+
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -22,74 +22,102 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function AddReservation(props) {
+function EditReservation(props) {
     const classes = useStyles();
 
-    const {authUser, firebase, selectedDay, setOpenSnackbar, setSnackbarMsg} = props;
+    const {authUser, firebase, reservation, reservationKey, setEditing, setOpenSnackbar, setSnackbarMsg} = props;
     const uid = authUser.uid;
-
-    // Set query date for updating database
-    selectedDay.year = new Date().getFullYear();
-    let queryDate = `${selectedDay.day}-${selectedDay.month}-${selectedDay.year}`;
-    const CurrentTime = moment().format('hh:mm');
 
     // Set default reservation object
     const defaultReservation = {
-        organizer: '', 
-        groupName: '', 
-        visitTime: CurrentTime, 
-        groupSize: 0, 
-        activities: '', 
-        notes: '', 
-        email: '',
-        date: queryDate
+        organizer: reservation.organizer, 
+        groupName: reservation.groupName, 
+        visitTime: reservation.visitTime, 
+        groupSize: reservation.groupSize, 
+        activities: reservation.activities, 
+        notes: reservation.notes, 
+        email: reservation.email
     }
 
-    const [reservation, setReservation] = useState(defaultReservation);
-
-
+    const [newReservation, setNewReservation] = useState(defaultReservation);
 
     const handleChange = e => {
         const { name, value } = e.target
-        setReservation({
-            ...reservation, 
-            date: queryDate,
+        setNewReservation({
+            ...newReservation, 
             [name]: value});
     }
-
-    // const handleSlider = e => {
-    //     const duration = e.target.getAttribute('aria-valuenow');
-    //     setReservation({...reservation, duration: duration});
+    // const handleOrganizerChange = e => {
+    //     const { organizer, value } = e.target
+    //     setNewReservation({
+    //         ...newReservation, 
+    //         [organizer]: value});
+    // }
+    // const handleGroupNameChange = e => {
+    //     const { groupName, value } = e.target
+    //     setNewReservation({
+    //         ...newReservation, 
+    //         [groupName]: value});
+    // }
+    // const handleVisitTimeChange = e => {
+    //     const { visitTime, value } = e.target
+    //     setNewReservation({
+    //         ...newReservation, 
+    //         [visitTime]: value});
+    // }
+    // const handleGroupSizeChange = e => {
+    //     const { groupSize, value } = e.target
+    //     setNewReservation({
+    //         ...newReservation, 
+    //         [groupSize]: value});
+    // }
+    // const handleActivitiesChange = e => {
+    //     const { activities, value } = e.target
+    //     setNewReservation({
+    //         ...newReservation, 
+    //         [activities]: value});
+    // }
+    // const handleNotesChange = e => {
+    //     const { notes, value } = e.target
+    //     setNewReservation({
+    //         ...newReservation, 
+    //         [notes]: value});
+    // }
+    // const handleEmailChange = e => {
+    //     const { email, value } = e.target
+    //     setNewReservation({
+    //         ...newReservation, 
+    //         [email]: value});
     // }
 
-    const isValid = reservation.name === '';
+    const isValid = newReservation.name === '';
 
     // Add the reservation to firebase via the API made in this app
-    const handleSubmit = () => {
+    const handleSubmit = action => {
         if (authUser) {
-            firebase.addReservation(uid, reservation);
-            setReservation(defaultReservation);
-            // Show notification
+            firebase.updateReservation(uid, newReservation, reservationKey);
+            setEditing(false);
+            // Show alert and hide after 3sec
             setOpenSnackbar(true);
-            setSnackbarMsg('Added reservation');
+            setSnackbarMsg('Updated reservation');
             setTimeout(() => {
                 setOpenSnackbar(false)
             }, 3000)
-        }
+        };
     }
 
     return (
         <form noValidate onSubmit={e => e.preventDefault()}>
             <FormControl className={classes.formControl}>
-                <TextField
+            <TextField
                     style={{marginTop: '5px'}}
                     variant="outlined"
                     margin="normal"
                     required
                     fullWidth
                     label="Reservation organizer"
-                    value={reservation.organizer}
-                    name="organizer"
+                    value={newReservation.organizer}
+                    organizer="organizer"
                     onChange={handleChange}
                 />
 
@@ -99,12 +127,11 @@ function AddReservation(props) {
                     margin="normal"
                     required
                     fullWidth
-                    label="Reservation Group Name"
-                    value={reservation.groupName}
-                    name="groupName"
+                    label="Reservation groupName"
+                    value={newReservation.groupName}
+                    groupName="groupName"
                     onChange={handleChange}
                 />
-                {/* <TimePicker */}
                 <TextField
                     style={{marginTop: '5px'}}
                     variant="outlined"
@@ -112,8 +139,8 @@ function AddReservation(props) {
                     required
                     fullWidth
                     label="Reservation Visit Time"
-                    value={reservation.visitTime}
-                    name="visitTime"
+                    value={newReservation.visitTime}
+                    visitTime="visitTime"
                     onChange={handleChange}
                 />
                 <TextField
@@ -124,8 +151,8 @@ function AddReservation(props) {
                     required
                     fullWidth
                     label="Reservation Group Size"
-                    value={reservation.groupSize}
-                    name="groupSize"
+                    value={newReservation.groupSize}
+                    groupSize="groupSize"
                     onChange={handleChange}
                 />
                 <TextField
@@ -135,8 +162,8 @@ function AddReservation(props) {
                     required
                     fullWidth
                     label="Activities"
-                    value={reservation.activities}
-                    name="activities"
+                    value={newReservation.activities}
+                    activities="activities"
                     onChange={handleChange}
                 />
                 <TextField
@@ -146,8 +173,8 @@ function AddReservation(props) {
                     required
                     fullWidth
                     label="Misc. Notes"
-                    value={reservation.notes}
-                    name="notes"
+                    value={newReservation.notes}
+                    notes="notes"
                     onChange={handleChange}
                 />
                 <TextField
@@ -158,32 +185,45 @@ function AddReservation(props) {
                     required
                     fullWidth
                     label="Contact E-mail"
-                    value={reservation.email}
-                    name="email"
+                    value={newReservation.email}
+                    email="email"
                     onChange={handleChange}
                 />
+                
+                {/* <TextField
+                    style={{marginTop: '5px'}}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    value={newReservation.name}
+                    label="Reservation name"
+                    name="name"
+                    onChange={handleChange}
+                />
+                
                 <div style={{marginTop: '20px', marginBottom: '30px'}}>
-                    {/* <Typography id="discrete-slider" gutterBottom>
+                    <Typography id="discrete-slider" gutterBottom>
                         Type
-                    </Typography> */}
-                    {/* <Select
+                    </Typography>
+                    <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={reservation.activities}
+                        value={newReservation.type}
                         style={{minWidth: '100%'}}
-                        name="activities"
+                        name="type"
                         onChange={handleChange}
                     >
-                        <MenuItem value={1}>Tree Swing</MenuItem>
+                        <MenuItem value={1}>Lifting Weights</MenuItem>
                         <MenuItem value={2}>Running</MenuItem>
                         <MenuItem value={3}>Cycling</MenuItem>
-                    </Select> */}
+                    </Select>
                 </div>
-                {/* <Typography id="discrete-slider" gutterBottom>
+                <Typography id="discrete-slider" gutterBottom>
                     Duration
-                </Typography> */}
-                {/* <Slider
-                    defaultValue={reservation.duration}
+                </Typography>
+                <Slider
+                    defaultValue={parseInt(newReservation.duration)}
                     aria-labelledby="discrete-slider"
                     valueLabelDisplay="auto"
                     step={10}
@@ -200,13 +240,13 @@ function AddReservation(props) {
                 fullWidth
                 variant="contained"
                 color="primary"
-                onClick={handleSubmit}
+                onClick={() => handleSubmit('add')}
                 disabled={isValid}
             >
-            Add reservation
+            Save reservation
             </Button>
         </form>
     )
 };
 
-export default withFirebase(AddReservation);
+export default withFirebase(EditReservation);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../../Firebase';
 
 import { makeStyles } from '@material-ui/core/styles';
 

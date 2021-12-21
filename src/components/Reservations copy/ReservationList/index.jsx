@@ -1,5 +1,5 @@
 import React from 'react';
-import { withFirebase } from  '../Firebase';
+import { withFirebase } from  '../../Firebase';
 import loader from './loader.gif';
 
 import Table from '@material-ui/core/Table';

@@ -27,7 +27,7 @@ import Calendar from '../components/Reservations/Calendar';
 import Sidebar from '../components/Sidebar';
 import Copyright from '../components/Copyright';
 
-function Dashboard(props) {
+function ProjectDashboard(props) {
   let match = useRouteMatch();
 
   const classes = useStyles();
@@ -60,7 +60,7 @@ function Dashboard(props) {
                     <MenuIcon />
                     </IconButton>
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                    Dashboard
+                    ProjectDashboard
                     </Typography>
                     <IconButton color="inherit">
                     <Badge badgeContent={4} color="secondary">
@@ -101,4 +101,4 @@ function Dashboard(props) {
   );
 };
 
-export default withRouter(withAuthentication(Dashboard));
+export default withRouter(withAuthentication(ProjectDashboard));
