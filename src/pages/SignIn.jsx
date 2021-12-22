@@ -1,46 +1,53 @@
-import React, { useState } from 'react';
-import { withFirebase } from '../components/Firebase';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useState } from "react";
+import { withFirebase } from "../components/Firebase";
+import { Link, withRouter } from "react-router-dom";
 
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
 
-import useStyles from '../config/theme.signinup';
-import Copyright from '../components/Copyright';
+import useStyles from "../config/theme.signinup";
+import Copyright from "../components/Copyright";
 
-import PasswordForget from '../components/PasswordForget';
+import PasswordForget from "../components/PasswordForget";
 
 function SignIn(props) {
   const classes = useStyles();
 
-  const initialUser = {id: null, email: '', password: '', error: null, auth: null}
+  const initialUser = {
+    id: null,
+    email: "",
+    password: "",
+    error: null,
+    auth: null,
+  };
 
   const [user, setUser] = useState(initialUser);
 
-  const handleChange = e => {
-    const {name, value} = e.target;
-    setUser({...user, [name]: value})
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
 
   const handleSubmit = () => {
-    props.firebase.doSignInWithEmailAndPassword(user.email, user.password)
-    .then(authUser => {
-      setUser({initialUser})
-      props.history.push("/dashboard");
-    })
-    .catch(error => {
-      setUser({...user, error: error.message})
-    });
-  }
+    props.firebase
+      .doSignInWithEmailAndPassword(user.email, user.password)
+      .then((authUser) => {
+        setUser({ initialUser });
+        props.history.push("/dashboard");
+      })
+      .catch((error) => {
+        setUser({ ...user, error: error.message });
+      });
+  };
 
-  const isValid = user.email === '' || user.password === '';
+  const isValid = user.email === "" || user.password === "";
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -54,10 +61,10 @@ function SignIn(props) {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form 
-            className={classes.form} 
+          <form
+            className={classes.form}
             noValidate
-            onSubmit={e => e.preventDefault()}
+            onSubmit={(e) => e.preventDefault()}
           >
             <TextField
               variant="outlined"
@@ -84,7 +91,7 @@ function SignIn(props) {
               onChange={handleChange}
             />
             <Typography className={classes.error}>
-              {user.error ? user.error : ''}
+              {user.error ? user.error : ""}
             </Typography>
             <Button
               type="submit"
@@ -102,9 +109,7 @@ function SignIn(props) {
                 <PasswordForget />
               </Grid>
               <Grid item>
-                <Link to="/sign-up">
-                  Don't have an account? Sign Up
-                </Link>
+                <Link to="/sign-up">Don't have an account? Sign Up</Link>
               </Grid>
             </Grid>
             <Box mt={5}>
@@ -115,6 +120,6 @@ function SignIn(props) {
       </Grid>
     </Grid>
   );
-};
+}
 
 export default withRouter(withFirebase(SignIn));

@@ -5,9 +5,7 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import MuiImageSlider from "mui-image-slider";
 
@@ -42,28 +40,8 @@ export const ContactUs = () => {
     e.target.reset();
   };
 
-  const images = [
-    icestorm,
-    wildfires,
-    rainbow
-  ];
+  const images = [icestorm, wildfires, rainbow];
   return (
-    // <form ref={form} onSubmit={sendEmail}>
-    //   <label>Name</label>
-    //   <input type="text" name="name" required/>
-    //   <label>Email</label>
-    //   <input type="email" name="email" required/>
-    //   <label>Name of Group</label>
-    //   <input type="text" name="group_name"/>
-    //   <label>How many visitors?</label>
-    //   <input type="number" name="group_size" step/>
-    //   <label>Planned date of visit</label>
-    //   <input type="date" name="visit_date"/>
-    //   <label>Describe any planned activities or anything else you'd like to share.</label>
-    //   <textarea name="notes" />
-    //   <input type="submit" value="Send" />
-    // </form>
-
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} container alignItems="center">
