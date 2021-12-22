@@ -141,7 +141,7 @@ function Calendar(props) {
                     { editing
                         ?
                             <>
-                                <h3>Edit reservation on {selectedDay.day}-{selectedDay.month + 1} </h3>
+                                <h3>Edit project on {selectedDay.day}-{selectedDay.month + 1} </h3>
                                 <EditReservation 
                                     reservation={reservation}
                                     reservationKey={reservationKey}
@@ -154,7 +154,7 @@ function Calendar(props) {
                             </>
                         :
                             <>
-                                <h3>Add reservation on {selectedDay.day}-{selectedDay.month + 1} </h3>
+                                <h3>Add project on {selectedDay.day}-{selectedDay.month + 1} </h3>
                                 <AddReservation 
                                     selectedDay={selectedDay} 
                                     authUser={props.authUser}

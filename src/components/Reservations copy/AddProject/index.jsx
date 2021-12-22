@@ -12,6 +12,7 @@ import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import { TimePicker } from '@mui/lab';
 import moment from 'moment';
+import { Check, CheckBox } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -33,45 +34,37 @@ function AddProject(props) {
     let queryDate = `${selectedDay.day}-${selectedDay.month}-${selectedDay.year}`;
     const CurrentTime = moment().format('hh:mm');
 
-    // Set default reservation object
+    // Set default project object
     const defaultProject = {
-        organizer: '', 
-        groupName: '', 
-        visitTime: CurrentTime, 
-        groupSize: 0, 
-        activities: '', 
-        notes: '', 
-        email: '',
-        date: queryDate
+        projectName: '', 
+        employee: '', 
+        cost: 0, 
+        instructions: '', 
+        completed: false
     }
 
-    const [reservation, setProject] = useState(defaultProject);
+    const [project, setProject] = useState(defaultProject);
 
 
 
     const handleChange = e => {
         const { name, value } = e.target
         setProject({
-            ...reservation, 
+            ...project, 
             date: queryDate,
             [name]: value});
     }
 
-    // const handleSlider = e => {
-    //     const duration = e.target.getAttribute('aria-valuenow');
-    //     setProject({...reservation, duration: duration});
-    // }
+    const isValid = project.name === '';
 
-    const isValid = reservation.name === '';
-
-    // Add the reservation to firebase via the API made in this app
+    // Add the project to firebase via the API made in this app
     const handleSubmit = () => {
         if (authUser) {
-            firebase.addProject(uid, reservation);
+            firebase.addProject(uid, project);
             setProject(defaultProject);
             // Show notification
             setOpenSnackbar(true);
-            setSnackbarMsg('Added reservation');
+            setSnackbarMsg('Added project');
             setTimeout(() => {
                 setOpenSnackbar(false)
             }, 3000)
@@ -87,9 +80,9 @@ function AddProject(props) {
                     margin="normal"
                     required
                     fullWidth
-                    label="Project organizer"
-                    value={reservation.organizer}
-                    name="organizer"
+                    label="Project name"
+                    value={project.name}
+                    name="projectName"
                     onChange={handleChange}
                 />
 
@@ -99,9 +92,9 @@ function AddProject(props) {
                     margin="normal"
                     required
                     fullWidth
-                    label="Project Group Name"
-                    value={reservation.groupName}
-                    name="groupName"
+                    label="Employee Assigned"
+                    value={project.employee}
+                    name="employee"
                     onChange={handleChange}
                 />
                 {/* <TimePicker */}
@@ -109,23 +102,12 @@ function AddProject(props) {
                     style={{marginTop: '5px'}}
                     variant="outlined"
                     margin="normal"
+                    type="number"
                     required
                     fullWidth
-                    label="Project Visit Time"
-                    value={reservation.visitTime}
-                    name="visitTime"
-                    onChange={handleChange}
-                />
-                <TextField
-                    style={{marginTop: '5px'}}
-                    variant="outlined"
-                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Project Group Size"
-                    value={reservation.groupSize}
-                    name="groupSize"
+                    label="Estimated Cost"
+                    value={project.cost}
+                    name="cost"
                     onChange={handleChange}
                 />
                 <TextField
@@ -134,66 +116,24 @@ function AddProject(props) {
                     margin="normal"
                     required
                     fullWidth
-                    label="Activities"
-                    value={reservation.activities}
-                    name="activities"
+                    label="Instructions"
+                    value={project.instructions}
+                    name="instructions"
                     onChange={handleChange}
                 />
-                <TextField
+                <CheckBox
                     style={{marginTop: '5px'}}
                     variant="outlined"
                     margin="normal"
                     required
                     fullWidth
-                    label="Misc. Notes"
-                    value={reservation.notes}
-                    name="notes"
-                    onChange={handleChange}
-                />
-                <TextField
-                    style={{marginTop: '5px'}}
-                    variant="outlined"
-                    type="email"
-                    margin="normal"
-                    required
-                    fullWidth
-                    label="Contact E-mail"
-                    value={reservation.email}
-                    name="email"
+                    label="Completed?"
+                    value={project.completed}
+                    name="completed"
                     onChange={handleChange}
                 />
                 <div style={{marginTop: '20px', marginBottom: '30px'}}>
-                    {/* <Typography id="discrete-slider" gutterBottom>
-                        Type
-                    </Typography> */}
-                    {/* <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={reservation.activities}
-                        style={{minWidth: '100%'}}
-                        name="activities"
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={1}>Tree Swing</MenuItem>
-                        <MenuItem value={2}>Running</MenuItem>
-                        <MenuItem value={3}>Cycling</MenuItem>
-                    </Select> */}
                 </div>
-                {/* <Typography id="discrete-slider" gutterBottom>
-                    Duration
-                </Typography> */}
-                {/* <Slider
-                    defaultValue={reservation.duration}
-                    aria-labelledby="discrete-slider"
-                    valueLabelDisplay="auto"
-                    step={10}
-                    marks
-                    min={10}
-                    max={120}
-                    name="duration"
-                    onChange={handleSlider}
-                    style={{marginBottom: '20px'}}
-                /> */}
             </FormControl>
             <Button
                 type="submit"
@@ -203,7 +143,7 @@ function AddProject(props) {
                 onClick={handleSubmit}
                 disabled={isValid}
             >
-            Add reservation
+            Add project
             </Button>
         </form>
     )

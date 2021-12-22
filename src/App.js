@@ -9,6 +9,7 @@ import {
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './config/theme.config';
 
+import ProjectDashboard from './pages/ProjectDashboard';
 import Dashboard from './pages/Dashboard';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route path="/project-dashboard">
+            <ProjectDashboard />
           </Route>
         </Switch>
       </ThemeProvider>

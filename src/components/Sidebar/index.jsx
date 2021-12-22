@@ -38,12 +38,20 @@ function Sidebar(props) {
             <Divider />
             <List>
                 <ListSubheader inset>Menu</ListSubheader>
-                <Link to={`${match.url}`}>
+                <Link to={`${match.url}/dashboard`}>
                     <ListItem button>
                         <ListItemIcon>
                             <EventNoteIcon />
                         </ListItemIcon>
                         <ListItemText primary="Reservations" />
+                    </ListItem>
+                </Link>
+                <Link to={`${match.url}/project-dashboard`}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <EventNoteIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Projects" />
                     </ListItem>
                 </Link>
             </List>
