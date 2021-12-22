@@ -12,28 +12,26 @@ import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-function ReservationList(props) {
-    const {loading, reservations, editReservation,setOpenSnackbar, setSnackbarMsg, setEditing} = props;
+function ProjectList(props) {
+    const {loading, projects, editProject, setOpenSnackbar, setSnackbarMsg, setEditing} = props;
 
-    const deleteReservation = (i) => {
-        // Get key of reservation in firebase
-       const reservationKey = Object.keys(reservations)[i];
+    const deleteProject = (i) => {
+        // Get key of project in firebase
+       const projectKey = Object.keys(projects)[i];
        // Connect to our firebase API
-       const emptyReservation = {
-            organizer: null, 
-            groupName: null, 
-            visitTime: null, 
-            groupSize: null, 
-            activities: null, 
-            notes: null, 
-            email: null,
+       const emptyProject = {
+            projectName: null, 
+            employee: null, 
+            cost: null, 
+            instructions: null, 
+            completed: null, 
        };
 
-       props.firebase.updateReservation(props.authUser.uid, emptyReservation, reservationKey);
+       props.firebase.updateProject(props.authUser.uid, emptyProject, projectKey);
 
        // Show notification
        setOpenSnackbar(true);
-       setSnackbarMsg('Deleted reservation');
+       setSnackbarMsg('Deleted project');
        setTimeout(() => {
         setOpenSnackbar(false)
        }, 3000)
@@ -51,27 +49,25 @@ function ReservationList(props) {
             }
             
             {
-                reservations === 'not set' || reservations === null
-                    ? <p>No reservations added yet.</p>
+                projects === 'not set' || projects === null
+                    ? <p>No projects added yet.</p>
                     :
                     <TableContainer component={Paper} >
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Organizer</TableCell>
-                                    <TableCell>Group Name</TableCell>
-                                    <TableCell>Visit Time</TableCell>
-                                    <TableCell>Group Size</TableCell>
-                                    <TableCell>Activities</TableCell>
-                                    <TableCell>Misc Notes</TableCell>
-                                    <TableCell>E-mail</TableCell>
+                                    <TableCell>Project Name</TableCell>
+                                    <TableCell>Assigned Employee</TableCell>
+                                    <TableCell>Estimated Cost</TableCell>
+                                    <TableCell>Instructions</TableCell>
+                                    <TableCell>Completed?</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                             {
-                                Object.values(reservations).map((reservation, i) => {
-                                    let {organizer, groupName, visitTime, groupSize, activities, notes, email} = reservation;
-                                    // switch(reservation.type) {
+                                Object.values(projects).map((project, i) => {
+                                    let {projectName, employee, cost, instructions, completed} = project;
+                                    // switch(project.type) {
                                     //     case 1:
                                     //         type = "Lifting weights";
                                     //         break;
@@ -86,19 +82,17 @@ function ReservationList(props) {
                                     // };
                                     return (
                                         <TableRow key={i}>
-                                            <TableCell>{organizer}</TableCell>
-                                            <TableCell>{groupName}</TableCell>
-                                            <TableCell>{visitTime}</TableCell>
-                                            <TableCell>{groupSize}</TableCell>
-                                            <TableCell>{activities}</TableCell>
-                                            <TableCell>{notes}</TableCell>
-                                            <TableCell>{email}</TableCell>
+                                            <TableCell>{projectName}</TableCell>
+                                            <TableCell>{employee}</TableCell>
+                                            <TableCell>{cost}</TableCell>
+                                            <TableCell>{instructions}</TableCell>
+                                            <TableCell>{completed}</TableCell>
                                             <TableCell>
                                                 <DeleteIcon 
-                                                    onClick={e => deleteReservation(i)}
+                                                    onClick={e => deleteProject(i)}
                                                 />
                                                 <EditIcon
-                                                    onClick={e => editReservation(reservation, i)}
+                                                    onClick={e => editProject(project, i)}
                                                     style={{marginLeft:"20px"}}
                                                 />
                                             </TableCell>
@@ -114,4 +108,4 @@ function ReservationList(props) {
     )
 };
 
-export default withFirebase(ReservationList);
+export default withFirebase(ProjectList);

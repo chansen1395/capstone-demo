@@ -85,7 +85,6 @@ function AddProject(props) {
                     name="projectName"
                     onChange={handleChange}
                 />
-
                 <TextField
                     style={{marginTop: '5px'}}
                     variant="outlined"
@@ -97,7 +96,6 @@ function AddProject(props) {
                     name="employee"
                     onChange={handleChange}
                 />
-                {/* <TimePicker */}
                 <TextField
                     style={{marginTop: '5px'}}
                     variant="outlined"
@@ -121,14 +119,15 @@ function AddProject(props) {
                     name="instructions"
                     onChange={handleChange}
                 />
+                <p>Completed?</p>
                 <CheckBox
                     style={{marginTop: '5px'}}
                     variant="outlined"
                     margin="normal"
                     required
                     fullWidth
-                    label="Completed?"
-                    value={project.completed}
+                    // label="Completed?"
+                    // value={project.completed}
                     name="completed"
                     onChange={handleChange}
                 />

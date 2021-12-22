@@ -23,7 +23,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import useStyles from '../config/theme.dashboard';
 
-import Calendar from '../components/Reservations/Calendar';
+import Calendar from '../components/Reservations copy/Calendar';
 import Sidebar from '../components/Sidebar';
 import Copyright from '../components/Copyright';
 
@@ -65,7 +65,7 @@ function ProjectDashboard(props) {
                     <IconButton color="inherit">
                     <Badge badgeContent={4} color="secondary">
                         <Typography component="p" style={{paddingRight: "15px"}}>
-                        username
+                        Signed in as: {authUser.email}
                         </Typography>
                         <NotificationsIcon />
                     </Badge>

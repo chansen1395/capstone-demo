@@ -8,6 +8,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SettingsIcon from '@material-ui/icons/Settings';
+import HandymanIcon from '@mui/icons-material/Handyman';
 
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
@@ -38,7 +39,7 @@ function Sidebar(props) {
             <Divider />
             <List>
                 <ListSubheader inset>Menu</ListSubheader>
-                <Link to={`${match.url}/dashboard`}>
+                <Link to={`/dashboard`}>
                     <ListItem button>
                         <ListItemIcon>
                             <EventNoteIcon />
@@ -46,10 +47,10 @@ function Sidebar(props) {
                         <ListItemText primary="Reservations" />
                     </ListItem>
                 </Link>
-                <Link to={`${match.url}/project-dashboard`}>
+                <Link to={`/project-dashboard`}>
                     <ListItem button>
                         <ListItemIcon>
-                            <EventNoteIcon />
+                            <HandymanIcon />
                         </ListItemIcon>
                         <ListItemText primary="Projects" />
                     </ListItem>
