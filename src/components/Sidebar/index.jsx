@@ -9,6 +9,7 @@ import EventNoteIcon from "@material-ui/icons/EventNote";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SettingsIcon from "@material-ui/icons/Settings";
 import HandymanIcon from "@mui/icons-material/Handyman";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
 
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
@@ -69,6 +70,14 @@ function Sidebar(props) {
                 <SettingsIcon />
               </ListItemIcon>
               <ListItemText primary="Settings" />
+            </ListItem>
+          </Link>
+          <Link to={`/contact`}>
+            <ListItem button>
+              <ListItemIcon>
+                <ContactMailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Contact" />
             </ListItem>
           </Link>
           <ListItem button onClick={() => props.signOut()}>

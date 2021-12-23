@@ -27,7 +27,6 @@ _This is primarily an app to demonstrate creation of a functional website with p
 - You will need to create a firebase project and configure it. Paste the appropriate information into a .env file at the root directory.
 
 - _Once your environment is configured, do the following:_
-```
     1. $ cd ..capstone-demo
     2. $ npm run start
     3. _Navigate to http://localhost:3000/ in your browser.
@@ -35,6 +34,8 @@ _This is primarily an app to demonstrate creation of a functional website with p
 ## Future Features
 
 * About page
+* Forgot password
+* Cleaner, modern UI
 
 ## Known Bugs
 

@@ -73,7 +73,7 @@ function Dashboard(props) {
                 <IconButton color="inherit">
                   <Badge badgeContent={4} color="secondary">
                     <Typography component="p" style={{ paddingRight: "15px" }}>
-                      username
+                      Signed in as: {authUser.email}
                     </Typography>
                     <NotificationsIcon />
                   </Badge>
