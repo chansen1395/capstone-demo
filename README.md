@@ -39,7 +39,6 @@ _This is primarily an app to demonstrate creation of a functional website with p
 
 ## Known Bugs
 
-* _Firebase hosting does not work properly_
 * _Projects page is broken_
 
 ## License
