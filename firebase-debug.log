@@ -1,0 +1,152 @@
+[debug] [2021-12-27T18:39:54.855Z] ----------------------------------------------------------------------
+[debug] [2021-12-27T18:39:54.857Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\thesu\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-12-27T18:39:54.857Z] CLI Version:   7.13.1
+[debug] [2021-12-27T18:39:54.857Z] Platform:      win32
+[debug] [2021-12-27T18:39:54.857Z] Node Version:  v14.17.5
+[debug] [2021-12-27T18:39:54.858Z] Time:          Mon Dec 27 2021 10:39:54 GMT-0800 (Pacific Standard Time)
+[debug] [2021-12-27T18:39:54.858Z] ----------------------------------------------------------------------
+[debug] [2021-12-27T18:39:54.858Z] 
+[debug] [2021-12-27T18:39:54.864Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-12-27T18:39:54.865Z] > authorizing via signed-in user
+[debug] [2021-12-27T18:39:54.865Z] [iam] checking project capstone-demo-c5fda for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-12-27T18:39:54.866Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/capstone-demo-c5fda:testIamPermissions  
+
+[debug] [2021-12-27T18:39:54.970Z] <<< HTTP RESPONSE 200
+[debug] [2021-12-27T18:39:54.972Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/capstone-demo-c5fda  
+ 
+[debug] [2021-12-27T18:39:55.099Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'capstone-demo-c5fda'...
+[info] 
+[info] i  deploying hosting
+[debug] [2021-12-27T18:39:55.112Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/capstone-demo-c5fda-default-rtdb/versions  
+
+[debug] [2021-12-27T18:39:55.447Z] <<< HTTP RESPONSE 500
+[debug] [2021-12-27T18:39:55.447Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2021-12-27T18:39:55.508Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": 500,
+        "message": "Internal error encountered.",
+        "status": "INTERNAL"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Mon, 27 Dec 2021 18:39:53 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/capstone-demo-c5fda-default-rtdb/versions",
+        "path": "/v1beta1/sites/capstone-demo-c5fda-default-rtdb/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/capstone-demo-c5fda-default-rtdb/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
+[debug] [2021-12-27T18:40:37.559Z] ----------------------------------------------------------------------
+[debug] [2021-12-27T18:40:37.560Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\thesu\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-12-27T18:40:37.560Z] CLI Version:   7.13.1
+[debug] [2021-12-27T18:40:37.560Z] Platform:      win32
+[debug] [2021-12-27T18:40:37.560Z] Node Version:  v14.17.5
+[debug] [2021-12-27T18:40:37.561Z] Time:          Mon Dec 27 2021 10:40:37 GMT-0800 (Pacific Standard Time)
+[debug] [2021-12-27T18:40:37.561Z] ----------------------------------------------------------------------
+[debug] [2021-12-27T18:40:37.561Z] 
+[debug] [2021-12-27T18:40:37.567Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-12-27T18:40:37.567Z] > authorizing via signed-in user
+[debug] [2021-12-27T18:40:37.567Z] [iam] checking project capstone-demo-c5fda for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-12-27T18:40:37.569Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/capstone-demo-c5fda:testIamPermissions  
+
+[debug] [2021-12-27T18:40:37.667Z] <<< HTTP RESPONSE 200
+[debug] [2021-12-27T18:40:37.668Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/capstone-demo-c5fda  
+ 
+[debug] [2021-12-27T18:40:37.810Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'capstone-demo-c5fda'...
+[info] 
+[info] i  deploying hosting
+[debug] [2021-12-27T18:40:37.816Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/capstone-demo-c5fda-default-rtdb/versions  
+
+[debug] [2021-12-27T18:40:38.163Z] <<< HTTP RESPONSE 500
+[debug] [2021-12-27T18:40:38.164Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2021-12-27T18:40:38.228Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": 500,
+        "message": "Internal error encountered.",
+        "status": "INTERNAL"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Mon, 27 Dec 2021 18:40:36 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/capstone-demo-c5fda-default-rtdb/versions",
+        "path": "/v1beta1/sites/capstone-demo-c5fda-default-rtdb/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/capstone-demo-c5fda-default-rtdb/versions"
+      },
+      "method": "POST"
+    }
+  }
+}

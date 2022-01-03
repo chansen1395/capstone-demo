@@ -57,11 +57,11 @@ function Calendar(props) {
 
   const firstDayOfMonth = () => moment(dateObject).startOf("month").format("d");
 
-  /*** ADDING AN ACTIVITY ***/
+  /*** ADDING A RESERVATION ***/
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMsg, setSnackbarMsg] = useState(null);
 
-  /*** ACTIVITY LIST ***/
+  /*** RESERVATION LIST ***/
   const [reservations, setReservations] = useState(true);
   const [loading, setLoading] = useState([]);
   const [activeDays, setActiveDays] = useState([]);
